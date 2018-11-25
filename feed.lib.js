@@ -2,6 +2,7 @@
 
 const Parser = require('rss-parser');
 const _parser = new Parser({headers: {'charset': 'utf-8'}});
+const dbLib = require('./db.lib.js');
 const c = console.log;
 
 async function getFeeds(website) {
@@ -38,8 +39,9 @@ async function getFeeds(website) {
                 "site": selection,
                 "title": items[i].title,
                 "link": items[i].link,
-                "pub-date": items[i].pubDate
+                "pubdate": items[i].pubDate
             };
+            await dbLib.insertFeeds(feed_items[i]);
         }
         
         return feed_items;
