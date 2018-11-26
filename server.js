@@ -24,7 +24,7 @@ async function hendleFeed(req, res) {
 
   res.status(200).json({
     ok: true,
-    feed,
+    feed
   });
 }
 

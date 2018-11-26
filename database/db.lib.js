@@ -17,16 +17,20 @@ const connection = mysql.createConnection({
  * [TODO] Fix the id issue
  * @param {*} feed_item 
  */
-async function insertFeeds(feed_item) {
+async function insertFeeds(feeds_array,website) {
 
-    let _date = moment(Date.parse(feed_item.pubdate)).format('YYYY-MM-DD HH:mm:ss');
-
-    let feed = {
-        feed_site: feed_item.site,
-        feed_title: feed_item.title,
-        feed_url: feed_item.link,
-        feed_pubdate: _date
-    };
+    let feed = {};
+    const FEED_LENGTH = feeds_array.length;
+    let _date = '';
+    for(let i = 0; i < FEED_LENGTH; i++) {
+        _date = moment(Date.parse(feeds_array[i].pubdate)).format('YYYY-MM-DD HH:mm:ss');
+        feed = {
+            feed_site: website,
+            feed_title: feeds_array[i].title,
+            feed_url: feeds_array[i].link,
+            feed_pubdate: _date
+        };
+    }
     connection.query("INSERT INTO feeds SET ? ON DUPLICATE KEY UPDATE feed_site = '" + feed.feed_site 
                                                                     + "', feed_url = '" + feed.feed_url + 
                                                                     "', feed_pubdate = '" + feed.feed_pubdate + "'"
