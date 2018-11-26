@@ -11,15 +11,11 @@ const connection = mysql.createConnection({
     database : process.env.DB_NAME
 });
 
-// async function test() {
-//     let test =  {
-//         "site": "https://medium.com/feed/soldai",
-//         "title": "Videojuegos muy inteligentes",
-//         "link": "https://medium.com/soldai/videojuegos-muy-inteligentes-6e292f595022?source=rss----47994cf955e0---4",
-//         "pubdate": "Tue, 27 Mar 2018 17:38:37 GMT"
-//     }
-//     await insertFeeds(test);
-// }
+/**
+ * Get the XML parsed and save it into database.
+ * [TODO] Fix the id issue
+ * @param {*} feed_item 
+ */
 async function insertFeeds(feed_item) {
 
     let _date = moment(Date.parse(feed_item.pubdate)).format('YYYY-MM-DD HH:mm:ss');
@@ -36,11 +32,12 @@ async function insertFeeds(feed_item) {
         ,feed,function(error, results, fields){
         if (error) throw error;
         console.log('1 elemento insertado');
-        // connection.end();
     });
 }
 
-// test();
+/**
+ * [TODO] Select feeds from database and return it
+ */
 
 
 exports.insertFeeds = insertFeeds;
