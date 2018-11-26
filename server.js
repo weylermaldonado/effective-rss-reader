@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const feedly = require('./feed.lib.js');
+const feedly = require('./lib/feed.lib.js');
 const c = console.log;
 
 
