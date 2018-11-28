@@ -53,7 +53,18 @@ async function getAllFeeds() {
     });
 }
 
-
+/**
+ * [TODO]Select the las data inserted from a single feed.
+ */
+async function getSingleFeed(feedURL) {
+    return new Promise((resolve, reject) => {
+        connection.query("SELECT feed_title, feed_url,feed_site, feed_pubdate FROM feeds WHERE feed_site = '" + feedURL + "'", function(error, results, fields){
+            if(error) reject(error);
+            resolve(results);
+        });
+    });
+}
 
 exports.insertFeeds = insertFeeds;
 exports.getAllFeeds = getAllFeeds;
+exports.getSingleFeed = getSingleFeed;
