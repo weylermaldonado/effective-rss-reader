@@ -46,7 +46,7 @@ async function insertFeeds(feeds_array,website) {
  */
 async function getAllFeeds() {
     return new Promise((resolve, reject) => {
-        connection.query('SELECT feed_title, feed_url,feed_site, feed_pubdate FROM feeds', function(error, results, fields){
+        connection.query('SELECT feed_title, feed_url,feed_site, feed_pubdate FROM feeds ORDER BY feed_id DESC LIMIT 10', function(error, results, fields){
             if(error) reject(error);
             resolve(results);
         });
@@ -58,7 +58,7 @@ async function getAllFeeds() {
  */
 async function getSingleFeed(feedURL) {
     return new Promise((resolve, reject) => {
-        connection.query("SELECT feed_title, feed_url,feed_site, feed_pubdate FROM feeds WHERE feed_site = '" + feedURL + "'", function(error, results, fields){
+        connection.query("SELECT feed_title, feed_url,feed_site, feed_pubdate FROM feeds WHERE feed_site = '" + feedURL + "'  ORDER BY feed_id DESC LIMIT 10", function(error, results, fields){
             if(error) reject(error);
             resolve(results);
         });

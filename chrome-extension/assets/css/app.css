@@ -5,4 +5,13 @@ body {
 
 .main-title {
   padding: 10px;
+  text-align: center;
+}
+
+.reload {
+  padding-left: 10px;
+}
+
+.nav-wrapper {
+  background-color: skyblue;
 }
