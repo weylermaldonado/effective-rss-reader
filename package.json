@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Weyler Maldonado <weyler.maldonado@gmail.com>",
   "license": "ISC",
@@ -23,8 +23,12 @@
     "utf8": "^3.0.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "jshint": "^2.9.6",
+    "jslint": "^0.12.0",
+    "mocha": "^5.2.0"
   }
 }

@@ -13,14 +13,14 @@ El presente proyecto, consiste en un lector de canales RSS de **5 diferentes sit
 * [EDTeam Blog](https://ed.team/blog)
 * [New York Times](https://www.nytimes.com/es/)
 
-El sistema cuanta con cuatro componentes[Figura 1], el servicio web, el cliente, la base de datos y los respectivos canales RSS de los sitios web. El cliente siendo una extensión del navegador Google Chrome, consulta a dos diferentes _end points_, siendo estos: `/webhooks/feed` y `/webhooks/feed?refresh_all=false`. El primer end point se carga automáticamente al abrir la extensión, mientras que el otro se ejecuta cuando se toca el botón de _refrescar_. 
+El sistema cuanta con cuatro componentes, el servicio web, el cliente, la base de datos y los respectivos canales RSS de los sitios web. El cliente siendo una extensión del navegador Google Chrome, consulta a dos diferentes _end points_, siendo estos: `/webhooks/feed` y `/webhooks/feed?refresh_all=false`. El primer end point se carga automáticamente al abrir la extensión, mientras que el otro se ejecuta cuando se toca el botón de _refrescar_. 
 
 La arquitectura de ambos lados del proyecto se describe en las secciones siguientes.
 
 ## Descripción de lado del cliente
 De lado del cliente fue construido utilizando HTML plano, Materialize CSS para la maquetación y JQuery para la interacción entre el cliente y el servicio web. Para la optimización de esta parte, se utilizó únicamente un _CDN_ que es de una fuenta de google que pide la documentación de Materialize CSS. Mientras que las tecnologías antes mencionadas (Materialize CSS y JQuery) fueran descargadas y puestas localmente junto con el proyecto, usando la versión minimificada de cada una; así como los propios estilos, el archivo HTML y los archivos Javascript fueron minimificados.
 
-Se optó el **no** usar usar algún framework y/o librería para construir el cliente, puesto que, se consideró bastante pesado para este proyecto, dado que el manejador de dependencias de algún framework Javascript (node_modules) es bastante pesado para empaquetar en una extensión de Google Chrome.
+Se optó el **no** usar usar algún framework para construir el cliente, puesto que, se consideró bastante pesado para este proyecto, dado que el manejador de dependencias de algún framework Javascript (node_modules) es bastante pesado para empaquetar en una extensión de Google Chrome.
 
 
 ## Descripción de lado del servidor
@@ -48,4 +48,10 @@ A continuación se enlistan ideas de mejoras del proyecto:
 * Se propone llevar a cabo una versión de este proyecto utilizando sockets, dado que así se minimizaría la demora entre el cliente-servidor al igual que mejoraría la experiencia de usuario al eliminar el botón de _actualizar_, dado que crearía una pila de noticias nuevas y entrantes (al estilo de twitter). 
 * Se propone una reestruturación del proyecto, a tal punto que se puedan consultar N cantidad de canales RSS de sitios web, únicamente leyéndoles de un archivo JSON.
 
-## Anexos
+# Anexos
+## Arquitectura usada para el endponint `/webhooks/feed`
+![](image1.png)
+## Arquitectura usada para el endponint `/webhooks/feed?refresh_all=false`
+![](image2.png)
+## Arquitectura detallada del WebService
+![](image3.png)
